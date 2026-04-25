@@ -13,6 +13,9 @@ import 'package:kelompok_12_app/pages/rumus/luas_lingkaran.dart';
 import 'package:kelompok_12_app/pages/quiz/quiz_single.dart';
 import 'package:kelompok_12_app/pages/quiz/quiz_multi.dart';
 import 'package:kelompok_12_app/pages/poll/polling_page.dart';
+import 'package:kelompok_12_app/pages/branching/if_max_min.dart';
+import 'package:kelompok_12_app/pages/branching/nested_if_diskon.dart';
+import 'package:kelompok_12_app/pages/branching/switch_case_diskon.dart';
 
 void main() {
   runApp(const Kelompok12App());
@@ -219,6 +222,72 @@ class MemberListScreen extends StatelessWidget {
               ),
             ),
           ),
+          SliverToBoxAdapter(
+            child: Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Quick Features',
+                    style: GoogleFonts.poppins(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  const SizedBox(height: 12),
+                  GridView.count(
+                    shrinkWrap: true,
+                    physics: const NeverScrollableScrollPhysics(),
+                    crossAxisCount: 3,
+                    mainAxisSpacing: 12,
+                    crossAxisSpacing: 12,
+                    children: [
+                      _buildMenuCard(
+                        context,
+                        'Rumus',
+                        Icons.calculate,
+                        Colors.deepPurple,
+                        () => _showRumusMenu(context),
+                      ),
+                      _buildMenuCard(
+                        context,
+                        'Quiz',
+                        Icons.quiz,
+                        Colors.orange,
+                        () => _showQuizMenu(context),
+                      ),
+                      _buildMenuCard(
+                        context,
+                        'Polling',
+                        Icons.poll,
+                        Colors.blue,
+                        () => Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (_) => PollingPage()),
+                        ),
+                      ),
+                      _buildMenuCard(
+                        context,
+                        'Pencabangan',
+                        Icons.account_tree,
+                        Colors.teal,
+                        () => _showBranchingMenu(context),
+                      ),
+                    ],
+                  ),
+                  const SizedBox(height: 24),
+                  Text(
+                    'Our Team',
+                    style: GoogleFonts.poppins(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ),
           SliverList(
             delegate: SliverChildBuilderDelegate((context, index) {
               final member = groupMembers[index];
@@ -309,6 +378,189 @@ class MemberListScreen extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildMenuCard(
+    BuildContext context,
+    String title,
+    IconData icon,
+    Color color,
+    VoidCallback onTap,
+  ) {
+    return InkWell(
+      onTap: onTap,
+      child: Card(
+        elevation: 2,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(icon, color: color, size: 32),
+            const SizedBox(height: 8),
+            Text(
+              title,
+              style: GoogleFonts.poppins(
+                fontSize: 12,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  void _showRumusMenu(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (context) {
+        return Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                'Pilih Rumus',
+                style: GoogleFonts.poppins(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 16),
+              ListTile(
+                leading: const Icon(Icons.architecture, color: Colors.deepPurple),
+                title: const Text('Luas Segitiga'),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(context, MaterialPageRoute(builder: (_) => const LuasSegitigaPage()));
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.opacity, color: Colors.deepPurple),
+                title: const Text('Isi Tabung'),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(context, MaterialPageRoute(builder: (_) => const IsiTabungPage()));
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.square_foot, color: Colors.deepPurple),
+                title: const Text('Luas Kotak'),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(context, MaterialPageRoute(builder: (_) => const LuasKotakPage()));
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.circle_outlined, color: Colors.deepPurple),
+                title: const Text('Luas Lingkaran'),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(context, MaterialPageRoute(builder: (_) => const LuasLingkaranPage()));
+                },
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  void _showQuizMenu(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (context) {
+        return Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                'Pilih Quiz',
+                style: GoogleFonts.poppins(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 16),
+              ListTile(
+                leading: const Icon(Icons.looks_one, color: Colors.orange),
+                title: const Text('Quiz Single Choice'),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(context, MaterialPageRoute(builder: (_) => QuizSinglePage()));
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.looks_two, color: Colors.orange),
+                title: const Text('Quiz Multiple Choice'),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(context, MaterialPageRoute(builder: (_) => QuizMultiPage()));
+                },
+              ),
+            ],
+          ),
+        );
+      },
+    );
+  }
+
+  void _showBranchingMenu(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+      ),
+      builder: (context) {
+        return Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text(
+                'Fitur Pencabangan',
+                style: GoogleFonts.poppins(
+                  fontSize: 18,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const SizedBox(height: 16),
+              ListTile(
+                leading: const Icon(Icons.compare_arrows, color: Colors.teal),
+                title: const Text('Max & Min (IF)'),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(context, MaterialPageRoute(builder: (_) => const IfMaxMinPage()));
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.shopping_bag, color: Colors.teal),
+                title: const Text('Diskon (Nested IF)'),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(context, MaterialPageRoute(builder: (_) => const NestedIfDiskonPage()));
+                },
+              ),
+              ListTile(
+                leading: const Icon(Icons.confirmation_number, color: Colors.teal),
+                title: const Text('Diskon (Switch Case)'),
+                onTap: () {
+                  Navigator.pop(context);
+                  Navigator.push(context, MaterialPageRoute(builder: (_) => const SwitchCaseDiskonPage()));
+                },
+              ),
+            ],
+          ),
+        );
+      },
     );
   }
 
