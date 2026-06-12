@@ -33,7 +33,7 @@ class Member {
 final List<Member> groupMembers = [
   Member(
     name: 'Muhammad Fauzan',
-    role: 'Project Leader & Developer',
+    role: 'Informatics Engineering Student',
     nim: '0112524027',
     bio:
         'Fullstack Developer & ETL Specialist with 3+ years of experience. Currently leading internal ecosystems at PT Maha Sentral Sejati for 2,500+ users. Experienced in Flutter, .NET Core, and Data Engineering. I love building tools that automate repetitive tasks and simplify complex workflows.',
@@ -49,8 +49,8 @@ final List<Member> groupMembers = [
   ),
   Member(
     name: 'Nadira Novita',
-    role: 'UI/UX Designer',
-    nim: '20220801002',
+    role: 'Informatics Engineering Student',
+    nim: '0112524031',
     bio:
         'Passionate about creating beautiful and user-friendly interfaces. Currently focusing on Informatics Engineering at Universitas Al Azhar Indonesia. I believe that good design is as little design as possible.',
     motto: '"Design is not just what it looks like. Design is how it works."',
