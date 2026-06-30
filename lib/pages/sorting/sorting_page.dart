@@ -189,7 +189,7 @@ class _SortingPageState extends State<SortingPage> {
                   child: Column(
                     children: [
                       DropdownButtonFormField<String>(
-                        value: _selectedAlgorithm,
+                        initialValue: _selectedAlgorithm,
                         dropdownColor: const Color(0xFF1E293B),
                         style: GoogleFonts.poppins(color: Colors.white, fontWeight: FontWeight.w600),
                         decoration: InputDecoration(
@@ -224,7 +224,7 @@ class _SortingPageState extends State<SortingPage> {
                           Switch(
                             value: _isAscending,
                             onChanged: (value) => setState(() => _isAscending = value),
-                            activeColor: const Color(0xFF818CF8),
+                            activeThumbColor: const Color(0xFF818CF8),
                             activeTrackColor: const Color(0xFF818CF8).withOpacity(0.3),
                           ),
                         ],
